@@ -27,13 +27,13 @@
         multiple
         type="drag"
         action="//jsonplaceholder.typicode.com/posts/"
-        style="display: inline-block;width:58px;"
+        style="display: inline-block;width:150px;"
       >
-        <div style="width: 58px;height:58px;line-height: 58px;">
-          <Icon type="ios-camera" size="20"></Icon>
+        <div style="width: 150px;height:150px;line-height: 150px;">
+          <Icon type="ios-camera" size="30"></Icon>
         </div>
       </Upload>
-      <Modal title="查看图片" v-model="visible">
+      <Modal width="900" title="查看图片" v-model="visible" footer-hide>
         <img class="viewImg" :src="imgUrl" alt="carousel_item">
       </Modal>
     </Card>
@@ -72,7 +72,10 @@ export default {
         );
       });
     },
-    handleSuccess(res, file) {},
+    handleSuccess(res, file) {
+      console.log(res);
+      console.log(file)
+    },
     handleFormatError(file) {
       this.$Notice.warning({
         title: "上传文件格式错误",
@@ -100,6 +103,7 @@ export default {
       this,
       this.request_url.home.carousel.multiple(),
       response => {
+        console.log(response.data)
         response.data.forEach(carousel => {
           let param = {
             id: carousel.id,
@@ -116,10 +120,10 @@ export default {
 <style scoped>
 .demo-upload-list {
   display: inline-block;
-  width: 60px;
-  height: 60px;
+  width: 150px;
+  height: 150px;
   text-align: center;
-  line-height: 60px;
+  line-height: 150px;
   border: 1px solid transparent;
   border-radius: 4px;
   overflow: hidden;
@@ -146,7 +150,7 @@ export default {
 }
 .demo-upload-list-cover i {
   color: #fff;
-  font-size: 20px;
+  font-size: 30px;
   cursor: pointer;
   margin: 0 2px;
 }

@@ -1,12 +1,19 @@
 <template>
   <div class="container">
     <Row :gutter="40">
-      <Col :span="6">
-        <side-bar v-if="show" v-show="showSide"/>
-      </Col>
-      <Col :span="mainSize">
-        <router-view/>
-      </Col>
+      <template v-if="styleSide">
+        <Col :span="6">
+          <side-bar v-show="showSide"/>
+        </Col>
+        <Col :span="mainSize">
+          <router-view/>
+        </Col>
+      </template>
+      <template v-else>
+        <Col :span="24">
+          <router-view @showside="styleSide = true"/>
+        </Col>
+      </template>
     </Row>
   </div>
 </template>
@@ -15,22 +22,20 @@ import sideBar from "@/components/admin/layout/sidebar";
 import homeMainContent from "@/components/admin/content/home/mainContent";
 
 export default {
-  data() {
-    return {
-      show: true
-    };
-  },
-  mounted() {
-    let current_url = document.location.href;
-    if (current_url.indexOf("login") != -1) {
-      this.show = false;
-      this.$emit("hideside");
+  mounted () {
+    if(this.$store.state.token) {
+      this.styleSide = true;
     }
   },
   props: ["showSide", "mainSize"],
   components: {
     sideBar,
-    homeMainContent
+    homeMainContent,
+  },
+  data () {
+    return {
+      styleSide: false
+    }
   }
 };
 </script>

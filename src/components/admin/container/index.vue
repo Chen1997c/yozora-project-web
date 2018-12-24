@@ -1,8 +1,7 @@
 <template>
   <div id="admin">
-    <admin-header :showToggleBtn="showToggleBtn" @listclick="showSide = !showSide"/>
+    <admin-header @listclick="showSide = !showSide"/>
     <admin-content
-      @hideside="showToggleBtn = null;showSide = false"
       :showSide="showSide"
       :mainSize="showSide == true ? 18 : 24"
     />
@@ -19,7 +18,6 @@ export default {
   data() {
     return {
       showSide: true,
-      showToggleBtn: true
     };
   },
   components: {
@@ -29,6 +27,12 @@ export default {
   }
 };
 </script>
+<style scoped>
+#admin {
+  min-width:1100px;
+}
+</style>
+
 
 
 

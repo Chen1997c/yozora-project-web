@@ -1,7 +1,7 @@
 <template>
   <Carousel class="carousel" trigger="hover" autoplay v-model="value2" loop>
     <CarouselItem v-for="img in imgs" :key="img.id">
-      <div class="demo-carousel">
+      <div class="carousel-item">
         <img :src="img.url" alt="carousel_item">
       </div>
     </CarouselItem>
@@ -40,5 +40,9 @@ export default {
 }
 .carousel {
   margin: 20px 0;
+}
+
+.carousel-item {
+  height: 500px;
 }
 </style>

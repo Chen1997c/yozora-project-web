@@ -1,6 +1,6 @@
 <template>
   <Menu width="auto">
-    <MenuItem name="0">
+    <MenuItem @click.native="toIndex" name="0">
       <Icon type="ios-contrast"/>首页
     </MenuItem>
     <Submenu name="1">
@@ -42,11 +42,6 @@
     <MenuItem name="3">
       <Icon type="logo-snapchat"/>用户管理
     </MenuItem>
-    <router-link to="login">
-    <MenuItem  name="5">
-      <Icon type="md-key"/>登录
-    </MenuItem>
-    </router-link>
   </Menu>
 </template>
 
@@ -61,6 +56,12 @@ export default {
     },
     toHomeCarousel() {
       this.$router.push("/admin/home-carousel");
+    },
+    toLogin() {
+      this.$router.push("/admin/login");
+    },
+    toIndex() {
+      this.$router.push("/admin");
     }
   }
 };
